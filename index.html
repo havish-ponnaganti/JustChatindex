@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbox</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #DF3C5F;
+            font-family: Arial, sans-serif;
+        }
+        
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #224193;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(111, 155, 209, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
+        }
+        
+        .chatbox {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #224193;
+            overflow: auto;
+            margin-bottom: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #224193;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        button {
+            padding: 8px 16px;
+            background-color: #224193;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #DF3C5F;
+        }
+        
+        @media (max-width: 600px) {
+            .chat-container {
+                padding: 10px;
+            }
+            
+            .chatbox {
+                height: 200px;
+            }
+            
+            input[type="text"] {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chatbox" id="chatbox"></div>
+        <input type="text" id="nameInput" placeholder="Your Name" />
+        <input type="text" id="messageInput" placeholder="Your Message" />
+        <button id="submitButton">Submit</button>
+    </div>
+
+    <script>
+        // Get elements
+        const chatbox = document.getElementById('chatbox');
+        const nameInput = document.getElementById('nameInput');
+        const messageInput = document.getElementById('messageInput');
+        const submitButton = document.getElementById('submitButton');
+
+        // Handle submit button click event
+        submitButton.addEventListener('click', function() {
+            const name = nameInput.value;
+            const message = messageInput.value;
+
+            if (name && message) {
+                const timestamp = new Date().toLocaleString();
+                const chatMessage = `${timestamp} - ${name}: ${message}<br>`;
+                chatbox.innerHTML += chatMessage;
+                messageInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
